@@ -163,6 +163,7 @@ hooks =
   , ("sbv > 7", set (testDepends . system . contains (pkg "z3")) True)
   , ("sdr", set (metaSection . platforms) (Just $ Set.singleton (NixpkgsPlatformGroup (ident # "x86_64")))) -- https://github.com/adamwalker/sdr/issues/2
   , ("shake-language-c", set doCheck False) -- https://github.com/samplecount/shake-language-c/issues/26
+  , ("smtlib-backends-process", over (testDepends . system) (Set.union (Set.singleton $ pkg "z3")))
   , ("ssh", set doCheck False) -- test suite runs forever, probably can't deal with our lack of network access
   , ("stack", set phaseOverrides stackOverrides . set doCheck False)
   , ("stripe-http-streams", set doCheck False . set (metaSection . broken) False)
